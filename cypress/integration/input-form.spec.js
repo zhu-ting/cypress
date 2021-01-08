@@ -15,4 +15,19 @@ describe('Input form', () => {
           .type(typedText)
           .should('have.value', typedText)
     })
+
+    context('Form submission', () => {
+        it.only('Adds a new todo on submit', () => {
+            cy.server()
+            cy.route('POST', '/api/todos', {
+                name: 'Buy yoghurt',
+                id: 1,
+                isCompleted: false
+            })
+
+            cy.get('.new-todo')
+              .type('Buy eggs')
+              .type('{enter}')
+        })
+    })
 })
