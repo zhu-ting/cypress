@@ -7,4 +7,11 @@ npm install
 npm run dev
 ```
 
-Go to http://localhost:3030/
+Go to http://localhost:3030
+
+To run the Cypress
+
+```
+npm run cypress
+``` 
+
