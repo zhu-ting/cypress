@@ -7,13 +7,14 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "serve": "json-server db.json",
-    "dev": "concurrently \"npm run watch\" \"npm run serve\""
+    "dev": "concurrently \"npm run watch\" \"npm run serve\"",
+    "cypress": "cypress open"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "0.19.2",
+    "axios": "^0.21.1",
     "concurrently": "3.6.1",
     "json-server": "0.16.1",
     "react": "16.13.1",
