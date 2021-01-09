@@ -34,5 +34,24 @@ describe('Input form', () => {
               .should('have.length', 1)
               .and('contain', itemText)
         })
+
+        it.only('Shows an error message on a failed submission', () => {
+            cy.server()
+            cy.route({
+                url: '/api/todos',
+                method: 'POST',
+                status: 500,
+                response: {}
+            })
+
+            cy.get('.new-todo')
+              .type('test{enter}')
+
+            cy.get('.todo-list.li')
+              .should('not.exist')
+
+            cy.get('.error')
+              .should('be.visible')
+        })
     })
 })
