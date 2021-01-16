@@ -53,12 +53,14 @@ export default class TodoApp extends Component {
   handleTodoSubmit(evt) {
     evt.preventDefault()
     const newTodo = { name: this.state.currentTodo, isCompleted: false }
-    saveTodo(newTodo)
+    setTimeout(() => {
+      saveTodo(newTodo)
       .then(({data}) => this.setState({
         todos: this.state.todos.concat(data),
         currentTodo: ''
       }))
       .catch(() => this.setState({error: true}))
+    }, 7500)
   }
 
   render () {
