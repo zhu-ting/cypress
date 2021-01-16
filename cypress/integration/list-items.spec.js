@@ -38,4 +38,32 @@ describe('List items', () => {
           .and('not.contain', 'milk')
           
     })
+
+    it.only('Marks an incomplete item complete', () => {
+      cy.fixture('todos')
+        .then(todos => {
+          const target = Cypress._.head(todos);
+          cy.route(
+            'PUT',
+            `/api/todos/${target.id}`,
+            Cypress._.merge(target, { isCompleted: true })
+          )
+        })
+
+        cy.get('.todo-list li')
+          .first()
+          .as('first-todo')
+
+        cy.get('@first-todo')
+          .find('.toggle')
+          .click()
+          .should('be.checked')
+
+        cy.get('@first-todo')
+          .should('have.class', 'completed')
+
+        cy.get('@first-todo')
+          .should('contain', 2)
+
+    })
 })
