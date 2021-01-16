@@ -1,17 +1,20 @@
 import React from 'react'
 
 const TodoItem = props =>
-  <li>
+  <li className={props.isCompleted ? "completed" : null}>
     <div className="view">
-      <input className="toggle" type="checkbox" />
+      <input className="toggle" type="checkbox" checked={props.isCompleted}/>
       <label>
         {props.name}
       </label>
-      <button className="destroy" />
+      <button className="destroy"
+        onClick={() => props.handleDelete(props.id)} />
     </div>
   </li>
 
 export default props =>
   <ul className="todo-list">
-    {props.todos.map(todo => <TodoItem key={todo.id} {...todo}/>)}
+    {props.todos.map(todo => 
+      <TodoItem key={todo.id} {...todo}
+      handleDelete={props.handleDelete}/>)}
   </ul>
