@@ -60,7 +60,7 @@ export default class TodoApp extends Component {
         currentTodo: ''
       }))
       .catch(() => this.setState({error: true}))
-    }, 7500)
+    }, 4500)
   }
 
   render () {
