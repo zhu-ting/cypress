@@ -32,5 +32,10 @@ describe('List items', () => {
           .find('.destroy')
           .invoke('show')
           .click({ force: true })
+
+        cy.get('@list')
+          .should('have.length', 3)
+          .and('not.contain', 'milk')
+          
     })
 })
