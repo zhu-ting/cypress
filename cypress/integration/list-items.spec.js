@@ -62,7 +62,7 @@ describe('List items', () => {
         cy.get('@first-todo')
           .should('have.class', 'completed')
 
-        cy.get('todo-count')
+        cy.get('.todo-count')
           .should('contain', 2)
 
     })
