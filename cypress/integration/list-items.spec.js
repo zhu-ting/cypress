@@ -42,7 +42,7 @@ describe('List items', () => {
     it.only('Marks an incomplete item complete', () => {
       cy.fixture('todos')
         .then(todos => {
-          const target = Cypress._.head(todos);
+          const target = Cypress._.head(todos)
           cy.route(
             'PUT',
             `/api/todos/${target.id}`,
@@ -62,7 +62,7 @@ describe('List items', () => {
         cy.get('@first-todo')
           .should('have.class', 'completed')
 
-        cy.get('@first-todo')
+        cy.get('todo-count')
           .should('contain', 2)
 
     })
