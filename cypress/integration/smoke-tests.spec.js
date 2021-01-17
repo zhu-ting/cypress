@@ -6,7 +6,7 @@ describe('Smoke tests', () => {
     })
 
     context('With no todos', () => {
-        it.only('Saves new todos', () => {
+        it('Saves new todos', () => {
             const items = [
                 {text: 'Buy milk', expectedLength: 1},
                 {text: 'Buy eggs', expectedLength: 2},
@@ -44,7 +44,7 @@ describe('Smoke tests', () => {
                   .should('have.length', 4)
             })
 
-            it.only('Delete todos', () => {
+            it('Delete todos', () => {
                 cy.server()
                 cy.route('DELETE', '/api/todos/*')
                   .as('delete')
@@ -60,7 +60,25 @@ describe('Smoke tests', () => {
                   })
                   .should('not.exist')
             })
-        })
 
+            it.only('Toggles todos', () => {
+                cy.server()
+                cy.route('PUT', '/api/todos/*')
+                  .as('update')
+
+                cy.get('.todo-list li')
+                  .each($el => {
+                      cy.wrap($el)
+                        .as('item')
+                        .find('.toggle')
+                        .click()
+
+                      cy.wait('@update')
+
+                      cy.get('@item')
+                        .should('have.class', 'completed')
+                  })
+            })
+        })
     })
 })
