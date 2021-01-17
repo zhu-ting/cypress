@@ -19,7 +19,7 @@ describe('Footer', () => {
             cy.get('.todo-count')
               .should('contain', '3 todos left')
         })
-        it.only('Handlers filter links', () => {
+        it('Handlers filter links', () => {
             const filters = [
                 {link: 'Active', expectedLength: 3},
                 {link: 'Completed', expectedLength: 1},
